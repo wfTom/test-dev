@@ -34,6 +34,10 @@ export const LessonDiv = styled.div`
   width: 100%;
   height: 3rem;
   color: var(--letter);
+  background-color: ${props =>
+    props.property == 'true' ? 'var(--gray3)' : ''};
+  border-left: ${props =>
+    props.property == 'true' ? '4px solid var(--blue2)' : ''};
   font-size: 0.7rem;
   display: flex;
   flex-direction: row;

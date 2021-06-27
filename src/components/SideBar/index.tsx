@@ -4,25 +4,31 @@ import { CoachContext } from '../../contexts/CoachContext'
 import { Container, LessonDiv, MinutesDiv, Subject, TopDiv } from './styles'
 
 function SideBar() {
-  const { content, subjectName } = useContext(CoachContext)
+  const { content, lesson, setLesson } = useContext(CoachContext)
 
   return (
     <Container>
       <TopDiv>
         <p>React no Next</p>
       </TopDiv>
+
       <p>AULA ATUAL</p>
       <Subject>
-        <option>01.{subjectName}</option>
+        <option>01.{lesson.name}</option>
       </Subject>
+
       <p>ATIVIDADES</p>
-      {content.map(lesson => (
-        <LessonDiv key={lesson.id}>
+      {content.map(l => (
+        <LessonDiv
+          key={l.id}
+          property={lesson.id == l.id ? 'true' : 'false'}
+          onClick={() => setLesson(l)}
+        >
           <div>
-            {lesson.id < 9 ? 0 : ''}
-            {lesson.id + 1} {lesson.name}
+            {l.id < 9 ? 0 : ''}
+            {l.id + 1} {l.name}
           </div>
-          <MinutesDiv>{lesson.time} min</MinutesDiv>
+          <MinutesDiv>{l.time} min</MinutesDiv>
         </LessonDiv>
       ))}
     </Container>

@@ -1,5 +1,11 @@
 import { time } from 'console'
-import { createContext, ReactNode, useState } from 'react'
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useState
+} from 'react'
 
 interface ILesson {
   id: number
@@ -18,6 +24,7 @@ interface CoachContextData {
   lessonName: string
   haveNext: boolean
   currentExperience: number
+  setLesson: Dispatch<SetStateAction<ILesson>>
   endedLesson: () => void
 }
 
@@ -67,6 +74,7 @@ export function CoachProvider({ children, ...rest }: CoachProviderProps) {
         lessonName,
         haveNext,
         currentExperience,
+        setLesson,
         endedLesson
       }}
     >

@@ -9,8 +9,10 @@ export default createGlobalStyle`
     --minutes:#1b1f22;
     --gray:#282c2f;
     --gray2:#222629;
+    --gray3:#282c2f;
     --light-blue:#edf1f2;
     --blue:#31a7e5;
+    --blue2:#30a6e3;
     --gray-50:#F9FAFB;
     --gray-200:#E5E7EB;
     --gray-300:#D1D5DB;

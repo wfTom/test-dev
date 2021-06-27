@@ -6,8 +6,11 @@ import { Container } from './styles'
 function Main() {
   const { lesson, endedLesson } = useContext(CoachContext)
 
+  console.log(lesson)
+
   return (
     <Container>
+      {console.log(lesson)}
       {lesson.type === 'video' ? (
         <ReactPlayer
           controls
