@@ -2,6 +2,9 @@ import React from 'react'
 import Head from 'next/head'
 import api from '../services/api'
 import { CoachProvider } from '../contexts/CoachContext'
+import Header from '../components/Header'
+import SideBar from '../components/SideBar'
+import { HomePage } from '../styles'
 
 interface ILesson {
   id: number
@@ -25,39 +28,31 @@ export default function Home(props: HomeProps) {
       content={props.content}
       currentExperience={props.currentExperience}
     >
-      <div>
+      <HomePage>
         <Head>
           <title>Homepage</title>
         </Head>
 
+        <SideBar />
+        <Header />
+
         <main>
           <h1>Hello World</h1>
         </main>
-      </div>
+      </HomePage>
     </CoachProvider>
   )
 }
 
 export async function getServerSideProps() {
-  const content = []
+  let content = []
   let name = ''
 
   await api('content').then(response => {
-    // console.log(response.data)
     name = response.data.name
-    for (const i in response.data.lessons) {
-      content.push({
-        id: response.data.lessons[i].id,
-        name: response.data.lessons[i].name,
-        time: response.data.lessons[i].time,
-        content: response.data.lessons[i].content,
-        done: response.data.lessons[i].done,
-        next: response.data.lessons[i].next
-      })
-    }
+    content = response.data.lessons
   })
 
-  // console.log(name, content)
   const currentExperience = 0
 
   return {

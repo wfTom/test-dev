@@ -31,19 +31,17 @@ export const CoachContext = createContext({} as CoachContextData)
 
 export function CoachProvider({ children, ...rest }: CoachProviderProps) {
   const [content, setContent] = useState<ILesson[]>(rest.content)
-  const [lesson, setLesson] = useState<ILesson>(rest.content[1])
+  const [lesson, setLesson] = useState<ILesson>(rest.content[0])
   const [nameSubject, setNameSubject] = useState(rest.name ?? '')
-  const [nameLesson, setNameLesson] = useState(rest.content[1].name ?? '')
+  const [nameLesson, setNameLesson] = useState(rest.content[0].name ?? '')
   const [currentExperience, setCurrentExperience] = useState(
     rest.currentExperience ?? 0
   )
   const [haveNext, setHaveNext] = useState(
     rest.content.length <= 2 ? true : false
   )
-  let totalTime = content.reduce(
-    (totalTime, lesson) => (lesson.time += totalTime),
-    0
-  )
+  let totalTime = 0
+  content.map(lesson => (totalTime += lesson.time))
 
   function nextLesson() {
     let auxLesson = content[lesson.id + 1]
@@ -52,9 +50,9 @@ export function CoachProvider({ children, ...rest }: CoachProviderProps) {
 
     setHaveNext(content[lesson.id + 2] ? true : false)
 
-    const amount = (auxLesson.time * 100) / totalTime
-    let finalExperience = currentExperience + amount
-    setCurrentExperience(finalExperience)
+    // const amount = (auxLesson.time * 100) / totalTime
+    // let finalExperience = currentExperience + amount
+    // setCurrentExperience(finalExperience)
   }
 
   return (

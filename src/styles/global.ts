@@ -3,6 +3,14 @@ import { createGlobalStyle } from 'styled-components'
 export default createGlobalStyle`
   :root {
     --white:#fff;
+    --black:#181c1f;
+    --title-side-bar:#3e4346;
+    --letter:#7e8285;
+    --minutes:#1b1f22;
+    --gray:#282c2f;
+    --gray2:#222629;
+    --light-blue:#edf1f2;
+    --blue:#31a7e5;
     --gray-50:#F9FAFB;
     --gray-200:#E5E7EB;
     --gray-300:#D1D5DB;
