@@ -7,17 +7,18 @@ interface ILesson {
   time: number
   content: string
   done: boolean
+  type: string
   next: number
 }
 
 interface CoachContextData {
   content: ILesson[]
-  nameSubject: string
+  subjectName: string
   lesson: ILesson
-  nameLesson: string
+  lessonName: string
   haveNext: boolean
   currentExperience: number
-  nextLesson: () => void
+  endedLesson: () => void
 }
 
 interface CoachProviderProps {
@@ -32,8 +33,8 @@ export const CoachContext = createContext({} as CoachContextData)
 export function CoachProvider({ children, ...rest }: CoachProviderProps) {
   const [content, setContent] = useState<ILesson[]>(rest.content)
   const [lesson, setLesson] = useState<ILesson>(rest.content[0])
-  const [nameSubject, setNameSubject] = useState(rest.name ?? '')
-  const [nameLesson, setNameLesson] = useState(rest.content[0].name ?? '')
+  const [subjectName, setSubjectName] = useState(rest.name ?? '')
+  const [lessonName, setLessonName] = useState(rest.content[0].name ?? '')
   const [currentExperience, setCurrentExperience] = useState(
     rest.currentExperience ?? 0
   )
@@ -43,28 +44,30 @@ export function CoachProvider({ children, ...rest }: CoachProviderProps) {
   let totalTime = 0
   content.map(lesson => (totalTime += lesson.time))
 
-  function nextLesson() {
+  function nextLesson() {}
+
+  function endedLesson() {
     let auxLesson = content[lesson.id + 1]
     auxLesson.done = true
     setLesson(auxLesson)
 
-    setHaveNext(content[lesson.id + 2] ? true : false)
+    // setHaveNext(content[lesson.id + 2] ? true : false)
 
-    // const amount = (auxLesson.time * 100) / totalTime
-    // let finalExperience = currentExperience + amount
-    // setCurrentExperience(finalExperience)
+    const amount = (auxLesson.time * 100) / totalTime
+    let finalExperience = currentExperience + amount
+    setCurrentExperience(finalExperience)
   }
 
   return (
     <CoachContext.Provider
       value={{
         content,
-        nameSubject,
+        subjectName,
         lesson,
-        nameLesson,
+        lessonName,
         haveNext,
         currentExperience,
-        nextLesson
+        endedLesson
       }}
     >
       {children}

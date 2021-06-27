@@ -8,5 +8,8 @@ export const HomePage = styled.div`
   /* padding: 2.5rem 2rem; */
 
   display: flex;
-  /* flex-direction: column; */
+
+  > div {
+    /* flex-direction: column; */
+  }
 `

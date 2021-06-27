@@ -5,6 +5,7 @@ import { CoachProvider } from '../contexts/CoachContext'
 import Header from '../components/Header'
 import SideBar from '../components/SideBar'
 import { HomePage } from '../styles'
+import Main from '../components/Main'
 
 interface ILesson {
   id: number
@@ -12,6 +13,7 @@ interface ILesson {
   time: number
   content: string
   done: boolean
+  type: string
   next: number
 }
 
@@ -34,11 +36,13 @@ export default function Home(props: HomeProps) {
         </Head>
 
         <SideBar />
-        <Header />
+        <div>
+          <Header />
 
-        <main>
-          <h1>Hello World</h1>
-        </main>
+          <main>
+            <Main />
+          </main>
+        </div>
       </HomePage>
     </CoachProvider>
   )

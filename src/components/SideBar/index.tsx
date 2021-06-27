@@ -4,7 +4,7 @@ import { CoachContext } from '../../contexts/CoachContext'
 import { Container, LessonDiv, MinutesDiv, Subject, TopDiv } from './styles'
 
 function SideBar() {
-  const { content, nameSubject } = useContext(CoachContext)
+  const { content, subjectName } = useContext(CoachContext)
 
   return (
     <Container>
@@ -13,13 +13,14 @@ function SideBar() {
       </TopDiv>
       <p>AULA ATUAL</p>
       <Subject>
-        <option>01.{nameSubject}</option>
+        <option>01.{subjectName}</option>
       </Subject>
       <p>ATIVIDADES</p>
       {content.map(lesson => (
         <LessonDiv key={lesson.id}>
           <div>
-            0{lesson.id + 1} {lesson.name}
+            {lesson.id < 9 ? 0 : ''}
+            {lesson.id + 1} {lesson.name}
           </div>
           <MinutesDiv>{lesson.time} min</MinutesDiv>
         </LessonDiv>

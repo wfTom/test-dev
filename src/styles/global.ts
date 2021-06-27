@@ -30,7 +30,7 @@ export default createGlobalStyle`
   }
 
   body{
-    background: var(--gray-200);
+    background: var(--white);
   }
 
   body, input, textarea, button {
