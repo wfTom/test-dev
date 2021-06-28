@@ -62,4 +62,14 @@ export const MinutesDiv = styled.div`
 
 export const TopDiv = styled.div`
   background-color: var(--gray2);
+  display: grid;
+  grid-template-columns: 15% 85%;
+
+  > div {
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-left: 1rem;
+    width: 100%;
+  }
 `

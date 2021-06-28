@@ -58,7 +58,7 @@ export async function getServerSideProps() {
     content = response.data.lessons
   })
 
-  const currentExperience = 0
+  const currentExperience = 100
 
   return {
     props: { name, content, currentExperience }

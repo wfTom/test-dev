@@ -24,6 +24,7 @@ interface CoachContextData {
   lessonName: string
   haveNext: boolean
   currentExperience: number
+  totalTime: number
   setLesson: Dispatch<SetStateAction<ILesson>>
   endedLesson: () => void
 }
@@ -74,6 +75,7 @@ export function CoachProvider({ children, ...rest }: CoachProviderProps) {
         lessonName,
         haveNext,
         currentExperience,
+        totalTime,
         setLesson,
         endedLesson
       }}

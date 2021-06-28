@@ -1,5 +1,6 @@
 import React, { ReactNode, useContext } from 'react'
 import { CoachContext } from '../../contexts/CoachContext'
+import ProgressBar from '../ProgressBar'
 
 import { Container, LessonDiv, MinutesDiv, Subject, TopDiv } from './styles'
 
@@ -9,7 +10,15 @@ function SideBar() {
   return (
     <Container>
       <TopDiv>
-        <p>React no Next</p>
+        {/* <div> */}
+        <div>
+          <button>{'<-'}</button>
+        </div>
+        <div>
+          <p>React no Next</p>
+          <ProgressBar />
+        </div>
+        {/* </div> */}
       </TopDiv>
 
       <p>AULA ATUAL</p>
